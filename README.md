@@ -10,6 +10,7 @@ A production-ready, multi-tenant Spring Boot starter kit for building SaaS appli
 - ✅ **OAuth Integration** - Google and GitHub authentication
 - ✅ **Stripe Integration** - Subscription management and payment processing
 - ✅ **RESTful APIs** - Production-ready API endpoints
+- ✅ **Swagger/OpenAPI** - Interactive API documentation
 - ✅ **PostgreSQL Database** - Robust relational database
 - ✅ **Flyway Migrations** - Database version control
 - ✅ **Security Best Practices** - Spring Security with JWT
@@ -112,6 +113,34 @@ Or for local development:
 The application will start on `http://localhost:8080`
 
 ## API Documentation
+
+Once the application is running, you can access the interactive API documentation:
+
+### Swagger UI
+
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **OpenAPI JSON**: http://localhost:8080/v3/api-docs
+- **OpenAPI YAML**: http://localhost:8080/v3/api-docs.yaml
+
+The Swagger UI provides:
+
+- Interactive API testing
+- Complete request/response models
+- Authentication support (JWT Bearer token)
+- All endpoints documented with descriptions and examples
+
+### Testing with Swagger
+
+1. Start the application
+2. Open http://localhost:8080/swagger-ui.html in your browser
+3. Navigate to the Authentication endpoints
+4. Use the `/api/v1/auth/signup` endpoint to create a test user
+5. Copy the `accessToken` from the response
+6. Click "Authorize" button (🔓 icon) in Swagger UI
+7. Enter: `Bearer <your-access-token>`
+8. Now you can test all authenticated endpoints
+
+## API Endpoints
 
 ### Authentication Endpoints
 
