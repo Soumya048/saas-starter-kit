@@ -1,0 +1,19 @@
+type Query {
+  me: User!
+  tenant: Tenant!
+}
+
+type User {
+  id: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  roles: [String!]!
+}
+
+type Tenant {
+  id: ID!
+  tenantId: String!
+  name: String!
+  domain: String
+}
