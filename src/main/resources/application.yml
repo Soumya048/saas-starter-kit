@@ -17,7 +17,7 @@ spring:
     username: postgres
     password: postgres
   jpa:
-    generate-ddl: off
+    generate-ddl: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
@@ -25,6 +25,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        multi_tenant: SCHEMA
 
 # JWT configuration
 jwt:
