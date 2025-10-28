@@ -27,6 +27,19 @@ spring:
         format_sql: true
         multi_tenant: SCHEMA
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID:}
+            client-secret: ${GOOGLE_CLIENT_SECRET:}
+            scope: openid,profile,email
+          github:
+            client-id: ${GITHUB_CLIENT_ID:}
+            client-secret: ${GITHUB_CLIENT_SECRET:}
+            scope: user:email
+
 # JWT configuration
 jwt:
   secret: ${JWT_SECRET:change-me-dev-secret-32bytes-min}
