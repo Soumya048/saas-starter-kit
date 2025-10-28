@@ -8,16 +8,24 @@ spring:
     url: jdbc:postgresql://localhost:5432/saas_starter?currentSchema=saas_starter
     username: postgres
     password: postgres
-
-
   jpa:
     show-sql: true
     properties:
       hibernate:
         format_sql: true
 
-#logging:
-#  level:
-#    root: INFO
-#    com.saas: DEBUG
-#    org.springframework.security: DEBUG
+# JWT configuration
+jwt:
+  secret: ${JWT_SECRET:change-me-dev-secret-32bytes-min}
+  access-token-validity: ${JWT_ACCESS_TOKEN_VALIDITY:3600}
+
+# Stripe configuration
+stripe:
+  api-key: ${STRIPE_API_KEY:}
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
+
+logging:
+  level:
+    root: INFO
+    com.saas: DEBUG
+    org.springframework.security: DEBUG

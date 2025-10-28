@@ -110,17 +110,17 @@ Or for local development:
 ./gradlew bootRun --args='--spring.profiles.active=local'
 ```
 
-The application will start on `http://localhost:8080`
+The application will start on `http://localhost:8085`
 
 ## API Documentation
 
 Once the application is running, you can access the interactive API documentation:
 
-### Swagger UI
+### Swagger/OpenAPI
 
-- **Swagger UI**: http://localhost:8080/swagger-ui.html
-- **OpenAPI JSON**: http://localhost:8080/v3/api-docs
-- **OpenAPI YAML**: http://localhost:8080/v3/api-docs.yaml
+- **Swagger UI**: http://localhost:8085/swagger-ui/index.html
+- **OpenAPI JSON**: http://localhost:8085/v3/api-docs
+- **OpenAPI YAML**: http://localhost:8085/v3/api-docs.yaml
 
 The Swagger UI provides:
 
@@ -132,7 +132,7 @@ The Swagger UI provides:
 ### Testing with Swagger
 
 1. Start the application
-2. Open http://localhost:8080/swagger-ui.html in your browser
+2. Open http://localhost:8085/swagger-ui/index.html in your browser
 3. Navigate to the Authentication endpoints
 4. Use the `/api/v1/auth/signup` endpoint to create a test user
 5. Copy the `accessToken` from the response
