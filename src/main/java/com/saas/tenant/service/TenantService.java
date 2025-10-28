@@ -14,20 +14,21 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class TenantService {
-    
+
     private final TenantRepository tenantRepository;
-    
+    private final TenantSchemaService tenantSchemaService;
+
     @Transactional(readOnly = true)
     public void setTenantContext(String tenantId) {
         Optional<Tenant> tenant = tenantRepository.findByTenantIdAndActiveTrue(tenantId);
-        
+
         if (tenant.isPresent()) {
             TenantContext.setCurrentTenant(tenantId, tenant.get().getId());
         } else {
             log.warn("Tenant not found or inactive: {}", tenantId);
         }
     }
-    
+
     @Transactional(readOnly = true)
     public Optional<Tenant> getCurrentTenant() {
         Long tenantDbId = TenantContext.getCurrentTenantDbId();
@@ -36,11 +37,11 @@ public class TenantService {
         }
         return Optional.empty();
     }
-    
+
     @Transactional
     public Tenant createTenant(String tenantId, String name, String domain) {
         String schemaName = "tenant_" + tenantId.toLowerCase();
-        
+
         Tenant tenant = Tenant.builder()
                 .tenantId(tenantId)
                 .name(name)
@@ -49,7 +50,13 @@ public class TenantService {
                 .active(true)
                 .subscriptionStatus("active")
                 .build();
-        
-        return tenantRepository.save(tenant);
+
+        Tenant saved = tenantRepository.save(tenant);
+
+        // Ensure schema and migrate
+        tenantSchemaService.ensureSchemaExists(schemaName);
+        tenantSchemaService.migrateSchema(schemaName);
+
+        return saved;
     }
 }
